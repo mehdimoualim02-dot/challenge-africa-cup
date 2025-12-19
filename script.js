@@ -1,6 +1,6 @@
 // Exemple de participants et points (max 80)
 const participants = [
-    { name: "Participant 1", points: 5 },
+    { name: "Participant 11", points: 5 },
     { name: "Participant 2", points: 3 },
     { name: "Participant 3", points: 7 },
     { name: "Participant 4", points: 2 },
@@ -43,3 +43,4 @@ function renderMatchStats() {
 // Initialisation
 renderLeaderboard();
 renderMatchStats();
+
