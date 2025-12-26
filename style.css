@@ -99,16 +99,19 @@ main { max-width: 840px; margin: 0 auto; padding: 0 1rem 3rem; }
 /* =====================
    Login Gate Styles
    ===================== */
-.login-page { display: grid; min-height: 100vh; place-items: center; }
+
+body.login-page {
+  min-height: 100vh;       /* full viewport height */
+  margin: 0;               /* remove default margin */
+  display: flex;           /* enable flexbox */
+  align-items: center;     /* vertical centering */
+  justify-content: center; /* horizontal centering */
+}
 .gate { width: 100%; }
+
 .gate-card {
   width: min(92vw, 380px);
-  background: var(--card);
-  border: 1px solid var(--card-border);
-  border-radius: 12px;
-  padding: 1.25rem;
-  color: var(--text);
-  box-shadow: 0 12px 24px rgba(0,0,0,0.35);
+  margin: 0; /* important: no left/right offset */
 }
 .gate-card h1 { margin: 0 0 0.75rem; color: #fff; text-align: center; }
 #gate-form { display: grid; gap: 0.6rem; }
