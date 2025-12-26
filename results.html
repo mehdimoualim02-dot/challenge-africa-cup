@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Results – Cup of Africa Pronostics</title>
+  <link rel="stylesheet" href="style.css" />
+  <script>
+    // Guard: if not authorized, go back to login
+    (function(){
+      const AUTH_KEY = 'cup-africa-auth-ok';
+      if (sessionStorage.getItem(AUTH_KEY) !== '1') {
+        location.replace('index.html');
+      }
+    })();
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <h1>Cup of Africa Pronostics</h1>
+    <p class="subtitle">Phase 1 – Ranking</p>
+  </header>
+
+  <main>
+    <div id="ranking"></div>
+  </main>
+
+  <footer class="site-footer">
+    <small>© <span id="year"></span> Cup of Africa Pronostics</small>
+  </footer>
+
+  <script src="script.js" defer></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', ()=>{
+      const y = document.getElementById('year');
+      if (y) y.textContent = new Date().getFullYear();
+      if (window.CupOfAfricaRanking && typeof window.CupOfAfricaRanking.render === 'function') {
+        window.CupOfAfricaRanking.render();
+      }
+    });
+  </script>
+</body>
+</html>
