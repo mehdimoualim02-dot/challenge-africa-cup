@@ -1,55 +1,205 @@
-// Exemple de participants et points (max 80)
-const participants = [
-    { name: "Participant 11", points: 5 },
-    { name: "Participant 2", points: 3 },
-    { name: "Participant 3", points: 7 },
-    { name: "Participant 4", points: 2 },
-    { name: "Participant 4", points: 2 },
-    { name: "Participant 4", points: 2 },
-    { name: "Participant 4", points: 2 },
-    { name: "Participant 4", points: 2 },
-    { name: "Participant 11", points: 5 },
-    { name: "Participant 2", points: 3 },
-    { name: "Participant 3", points: 7 },
-    // ... jusqu'à 80 participants
-];
 
-// Exemple de matchs Phase 1 avec pourcentage des votes
-const matches = [
-    { teams: "Maroc 🇲🇦 vs Ghana 🇬🇭", percA: 60, percB: 40 },
-    { teams: "Nigeria 🇳🇬 vs Égypte 🇪🇬", percA: 50, percB: 50 },
-    { teams: "Sénégal 🇸🇳 vs Tunisie 🇹🇳", percA: 70, percB: 30 }
-];
+/**
+ * Cup of Africa Pronostics - Phase 1 Ranking Renderer
+ * Vanilla JS – no dependencies.
+ * 
+ * Usage:
+ * 1) Add <div id="ranking"></div> to your HTML.
+ * 2) Include this script.js at the end of <body> or with defer in <head>.
+ */
 
-// Générer le classement
-function renderLeaderboard() {
-    const tbody = document.querySelector("#leaderboard tbody");
-    participants.sort((a,b) => b.points - a.points); // tri décroissant
-    participants.forEach((p, i) => {
-        const tr = document.createElement("tr");
-        tr.innerHTML = `<td>${i+1}</td><td>${p.name}</td><td>${p.points}</td>`;
-        tbody.appendChild(tr);
+(function () {
+  // ---------------------------
+  // CONFIGURABLE DATA SOURCE
+  // ---------------------------
+  const rankingData = [
+    {
+      tierLabel: "🏆 1st Place (11 points)",
+      points: 11,
+      participants: [
+        "Meriem Ihdouka",
+        "Myriame El Idrissi Raghni",
+        "Abdelilah Benlhaoud",
+        "Hanaa Rharib"
+      ]
+    },
+    {
+      tierLabel: "🥈 2nd Place (10 points)",
+      points: 10,
+      participants: [
+        "Hajar Belkhbizi",
+        "Zakaria Racaf"
+      ]
+    },
+    {
+      tierLabel: "🥉 3rd Place (9 points)",
+      points: 9,
+      participants: [
+        "Moulay Thami El Bouaanani",
+        "Mohammed El Ghrabli",
+        "Anas Farid",
+        "Manal Aboudihaj",
+        "Abdelghani Fimoud"
+      ]
+    },
+    {
+      tierLabel: "4th Place (8 points)",
+      points: 8,
+      participants: [
+        "Yassine El Mouttaki"
+      ]
+    },
+    {
+      tierLabel: "5th Place (7 points)",
+      points: 7,
+      participants: [
+        "El Mehdi Moualim",
+        "Youssef Bassa",
+        "Youssef Aboussoufian",
+        "Marwane Jnibi"
+      ]
+    },
+    {
+      tierLabel: "6th Place (6 points)",
+      points: 6,
+      participants: [
+        "Taoufiq El Ouassifi",
+        "Salaheddine Bennissi",
+        "Amine Sekhri",
+        "Karima Saidi"
+      ]
+    }
+  ];
+
+  const calloutText = "🔥 Great job everyone! Stay tuned for the next phase!";
+
+  // ---------------------------
+  // OPTIONAL HIGHLIGHT CONFIG
+  // ---------------------------
+  // If you want to highlight specific names (e.g., your name), add them here:
+  const highlightNames = [
+    "El Mehdi Moualim" // 👋 feel free to add more names
+  ];
+
+  // Style tokens – tweak as needed
+  const styles = {
+    containerClass: "africa-cup-ranking",
+    titleClass: "ranking-title",
+    tierClass: "ranking-tier",
+    nameListClass: "participant-list",
+    nameItemClass: "participant-item",
+    highlightItemClass: "participant-item--highlight",
+    calloutClass: "ranking-callout"
+  };
+
+  // ---------------------------
+  // DOM UTILITIES
+  // ---------------------------
+  function createEl(tag, className, textContent) {
+    const el = document.createElement(tag);
+    if (className) el.className = className;
+    if (textContent !== undefined) el.textContent = textContent;
+    return el;
+  }
+
+  function normalize(str) {
+    return String(str).trim().toLowerCase();
+  }
+
+  function isHighlighted(name) {
+    return highlightNames
+      .map(normalize)
+      .includes(normalize(name));
+  }
+
+  // ---------------------------
+  // RENDERING
+  // ---------------------------
+  function renderRanking(mount) {
+    if (!mount) {
+      console.warn("Ranking mount element not found. Add <div id=\"ranking\"></div> to your HTML.");
+      return;
+    }
+
+    const container = createEl("section", styles.containerClass);
+
+    // Title
+    const title = createEl("h2", styles.titleClass, "Cup of Africa Pronostics – Phase 1 Ranking");
+    container.appendChild(title);
+
+    // Tiers
+    rankingData.forEach(tier => {
+      const tierBlock = createEl("div", styles.tierClass);
+
+      const tierHeader = createEl("h3", null, tier.tierLabel);
+      tierBlock.appendChild(tierHeader);
+
+      const list = createEl("ul", styles.nameListClass);
+
+      tier.participants.forEach(name => {
+        const li = createEl("li", styles.nameItemClass, name);
+        if (isHighlighted(name)) {
+          li.classList.add(styles.highlightItemClass);
+          li.setAttribute("title", "Highlighted");
+        }
+        list.appendChild(li);
+      });
+
+      tierBlock.appendChild(list);
+      container.appendChild(tierBlock);
     });
-}
 
-// Générer les statistiques des matchs
-function renderMatchStats() {
-    const container = document.getElementById("match-stats");
-    matches.forEach(match => {
-        const div = document.createElement("div");
-        div.className = "match";
-        div.innerHTML = `
-            <h3>${match.teams}</h3>
-            <p>${match.percA}% pour ${match.teams.split(" vs ")[0]}</p>
-            <p>${match.percB}% pour ${match.teams.split(" vs ")[1]}</p>
-        `;
-        container.appendChild(div);
-    });
-}
+    // Callout
+    const callout = createEl("p", styles.calloutClass, calloutText);
+    container.appendChild(callout);
 
-// Initialisation
-renderLeaderboard();
-renderMatchStats();
+    mount.innerHTML = ""; // clear previous content
+    mount.appendChild(container);
+  }
 
+  // ---------------------------
+  // AUTO-INIT
+  // ---------------------------
+  document.addEventListener("DOMContentLoaded", function () {
+    const mount = document.getElementById("ranking");
+    renderRanking(mount);
+  });
 
-
+  // ---------------------------
+  // OPTIONAL: Expose API
+  // ---------------------------
+  // You can update data dynamically if needed:
+  window.CupOfAfricaRanking = {
+    setData(newData) {
+      if (!Array.isArray(newData)) {
+        console.error("setData expects an array of tiers.");
+        return;
+      }
+      // Basic validation: must have tierLabel, points, participants
+      const valid = newData.every(t =>
+        t && typeof t.tierLabel === "string" &&
+        typeof t.points === "number" &&
+        Array.isArray(t.participants)
+      );
+      if (!valid) {
+        console.error("Invalid data shape for ranking.");
+        return;
+      }
+      // Update and re-render
+      while (rankingData.length) rankingData.pop();
+      newData.forEach(t => rankingData.push(t));
+      const mount = document.getElementById("ranking");
+      renderRanking(mount);
+    },
+    setHighlightNames(names) {
+      if (!Array.isArray(names)) {
+        console.error("setHighlightNames expects an array of strings.");
+        return;
+      }
+      while (highlightNames.length) highlightNames.pop();
+      names.forEach(n => highlightNames.push(n));
+      const mount = document.getElementById("ranking");
+      renderRanking(mount);
+    }
+  };
+})();
