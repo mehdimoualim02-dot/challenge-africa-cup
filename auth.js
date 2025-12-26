@@ -1,7 +1,8 @@
 // auth.js – login page logic: verify password (SHA-256) and redirect to results.html
 // Replace EXPECTED_HASH_HEX with SHA-256 of your password
-const EXPECTED_HASH_HEX = "381fabf51c63fdc85f5fcb47a34fe642c2233411b4f9caf04e498a8f734a637b
-";
+
+// Replace with the correct hash
+const EXPECTED_HASH_HEX = "381fabf51c63fdc85f5fcb47a34fe642c2233411b4f9caf04e498a8f734a637b";
 const AUTH_KEY = 'cup-africa-auth-ok';
 
 function toHex(buf){ return [...new Uint8Array(buf)].map(b=>b.toString(16).padStart(2,'0')).join(''); }
