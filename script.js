@@ -11,35 +11,6 @@ const participants = [
     { name: "Participant 11", points: 5 },
     { name: "Participant 2", points: 3 },
     { name: "Participant 3", points: 7 },
-    { name: "Participant 4", points: 2 },
-    { name: "Participant 4", points: 2 },
-    { name: "Participant 4", points: 2 },
-    { name: "Participant 4", points: 2 },
-    { name: "Participant 4", points: 2 },
-    { name: "Participant 11", points: 5 },
-    { name: "Participant 2", points: 3 },
-    { name: "Participant 3", points: 7 },
-    { name: "Participant 4", points: 2 },
-    { name: "Participant 4", points: 2 },
-    { name: "Participant 4", points: 2 },
-    { name: "Participant 4", points: 2 },
-    { name: "Participant 4", points: 2 },
-    { name: "Participant 11", points: 5 },
-    { name: "Participant 2", points: 3 },
-    { name: "Participant 3", points: 7 },
-    { name: "Participant 4", points: 2 },
-    { name: "Participant 4", points: 2 },
-    { name: "Participant 4", points: 2 },
-    { name: "Participant 4", points: 2 },
-    { name: "Participant 4", points: 2 },
-    { name: "Participant 11", points: 5 },
-    { name: "Participant 2", points: 3 },
-    { name: "Participant 3", points: 7 },
-    { name: "Participant 4", points: 2 },
-    { name: "Participant 4", points: 2 },
-    { name: "Participant 4", points: 2 },
-    { name: "Participant 4", points: 2 },
-    { name: "Participant 4", points: 2 },
     // ... jusqu'à 80 participants
 ];
 
@@ -79,5 +50,6 @@ function renderMatchStats() {
 // Initialisation
 renderLeaderboard();
 renderMatchStats();
+
 
 
