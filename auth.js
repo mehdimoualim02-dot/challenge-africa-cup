@@ -2,7 +2,8 @@
 // Replace EXPECTED_HASH_HEX with SHA-256 of your password
 
 // Replace with the correct hash
-const EXPECTED_HASH_HEX = "616384da8ed2fb86db3462ec827bc433256324e323a2438f48ae32930e707065";
+const EXPECTED_HASH_HEX = "e564f9b0b9ab6b4e299e246df4351175c6a7a388850fe8e9830732229a14ddd9
+  ";
 
 const AUTH_KEY = 'cup-africa-auth-ok';
 
