@@ -99,7 +99,15 @@ main { max-width: 840px; margin: 0 auto; padding: 0 1rem 3rem; }
 /* =====================
    Login Gate Styles
    ===================== */
-.login-page { display: grid; min-height: 100vh; place-items: center; }
+
+body.login-page {
+  min-height: 100vh;       /* full viewport height */
+  margin: 0;               /* remove default margin */
+  display: flex;           /* enable centering */
+  align-items: center;     /* vertical centering */
+  justify-content: center; /* horizontal centering */
+}
+
 .gate { width: 100%; }
 .gate-card {
   width: min(92vw, 380px);
