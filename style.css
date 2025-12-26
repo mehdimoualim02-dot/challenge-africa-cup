@@ -1,0 +1,130 @@
+/* =====================
+   Global Styles
+   ===================== */
+:root {
+  --bg: #0f1b2d;
+  --card: rgba(255,255,255,0.06);
+  --card-border: rgba(255,255,255,0.08);
+  --text: #e8f0fe;
+  --accent: #ef476f;
+  --gold: #ffd166;
+  --highlight-start: #06d6a0;
+  --highlight-end: #118ab2;
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.site-header {
+  max-width: 840px;
+  margin: 2rem auto 1rem;
+  padding: 0 1rem;
+}
+.site-header h1 { margin: 0 0 0.25rem; }
+.subtitle { opacity: 0.85; }
+
+main { max-width: 840px; margin: 0 auto; padding: 0 1rem 3rem; }
+.site-footer { max-width: 840px; margin: 0 auto; padding: 1rem; opacity: 0.7; }
+
+/* =====================
+   Ranking Component
+   ===================== */
+.africa-cup-ranking {
+  margin-top: 1rem;
+  padding: 1.5rem;
+  border-radius: 12px;
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.25);
+}
+
+.ranking-title {
+  margin: 0 0 1rem;
+  font-size: 1.6rem;
+  letter-spacing: 0.3px;
+  color: #fff;
+}
+
+.ranking-tier {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--card-border);
+  padding: 1rem;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}
+
+.ranking-tier h3 {
+  margin: 0 0 0.75rem;
+  font-size: 1.1rem;
+  color: var(--gold);
+}
+
+.participant-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.5rem 0.8rem;
+}
+
+.participant-item {
+  padding: 0.5rem 0.6rem;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid transparent;
+}
+
+.participant-item--highlight {
+  background: linear-gradient(135deg, var(--highlight-start) 0%, var(--highlight-end) 100%);
+  color: #081018;
+  font-weight: 700;
+  border-color: rgba(0,0,0,0.15);
+}
+
+.ranking-callout {
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  border-left: 4px solid var(--accent);
+  background: rgba(239,71,111,0.12);
+  border-radius: 8px;
+}
+
+/* =====================
+   Login Gate Styles
+   ===================== */
+.login-page { display: grid; min-height: 100vh; place-items: center; }
+.gate { width: 100%; }
+.gate-card {
+  width: min(92vw, 380px);
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 1.25rem;
+  color: var(--text);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.35);
+}
+.gate-card h1 { margin: 0 0 0.75rem; color: #fff; text-align: center; }
+#gate-form { display: grid; gap: 0.6rem; }
+#gate-input {
+  width: 100%; padding: 0.7rem 0.9rem; border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.2); background: rgba(0,0,0,0.25); color: #fff;
+}
+#gate-form button {
+  padding: 0.7rem 0.9rem; border-radius: 8px; border: 0;
+  background: linear-gradient(135deg, var(--highlight-start), var(--highlight-end));
+  color: #081018; font-weight: 700; cursor: pointer;
+}
+.gate-error { min-height: 1.1em; color: #ff8fa3; text-align: center; margin: 0.2rem 0 0; }
+
+/* Responsive */
+@media (max-width: 520px) {
+  .ranking-title { font-size: 1.3rem; }
+  .participant-list { grid-template-columns: 1fr; }
+}
